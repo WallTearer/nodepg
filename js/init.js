@@ -1,10 +1,15 @@
 var fs = require('fs');
+var path = require('path');
 
-var filePath = process.argv[2];
-fs.readFile(filePath, 'utf8', function fileReadDone(err, contents){
-  if ( err ) {
-    console.log('error: failed to read the file. ', err);
-  }
-  console.log(contents.split('\n').length-1);
-});
+var dirPath = process.argv[2];
+var ext = process.argv[3];
 
+function readDirDone(err, list){
+  list.forEach(function(fileName){
+    if ( path.extname(fileName) === '.' + ext ) {
+      console.log(fileName);
+    }
+  });
+}
+
+fs.readdir(dirPath, readDirDone);

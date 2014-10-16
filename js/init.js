@@ -1,3 +1,1 @@
-(function init(){
-    console.log("Hello nodepg");
-})();
+console.log("HELLO WORLD")

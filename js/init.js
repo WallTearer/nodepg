@@ -1,7 +1,10 @@
 var fs = require('fs');
 
 var filePath = process.argv[2];
-var buffer = fs.readFileSync(filePath);
-var contents = buffer.toString();
+fs.readFile(filePath, 'utf8', function fileReadDone(err, contents){
+  if ( err ) {
+    console.log('error: failed to read the file. ', err);
+  }
+  console.log(contents.split('\n').length-1);
+});
 
-console.log(contents.split('\n').length-1);
